@@ -71,7 +71,19 @@
       console.log(ordered);
   
       // Array.prototype.reduce()
+//       The reduce() method executes a reducer function for array element.
+
+// The reduce() method returns a single value: the function's accumulated result.
+
+// The reduce() method does not execute the function for empty array elements.
+
+// The reduce() method does not change the original array.
       // 4. How many years did all the inventors live all together?
+      const totalYears = inventors.reduce((total, inventor) => {
+        return total + (inventor.passed- inventor.year)
+      }, 0);
+
+      console.log(totalYears);
   
       // 5. Sort the inventors by years lived
   
