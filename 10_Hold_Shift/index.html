@@ -96,6 +96,66 @@
   </div>
 
 <script>
+    //Select all of checkboxes
+    const checkboxes = document.querySelectorAll('.inbox input[type="checkbox"]');
+
+    //Listen if one gets clicked or changed
+    let lastChecked;
+
+    function handleCheck(e) {
+        //check if had shift key down
+        //AND if user is checking the boxes
+        let inBetween = false;
+        
+        if(e.shiftKey && this.checked) {
+            checkboxes.forEach(checkbox => {
+                if(checkbox === this || checkbox === lastChecked) {
+                    inBetween = !inBetween;
+                }
+
+                if(inBetween) {
+                    checkbox.checked = true;
+                }
+            })
+        }
+        lastChecked = this;
+    }
+
+    checkboxes.forEach(checkbox => checkbox.addEventListener('click', handleCheck));
+    
+
+
+
+
+//MY FAILED ATTEMPT
+// var lastChecked = null;
+// var allCheckboxes = [];
+
+// function doOnLoad() {
+//      // Run through all the checkboxes and add an "onClick" event to them to handle SHIFT-CLICK
+//      var checkboxes = document.getElementsByClassName("item");
+//      for (var i=0; i<checkboxes.length; i++) {
+//            allCheckboxes.push(checkboxes[i]);
+//            checkboxes[i].onclick = function(e) {
+//                  if (!lastChecked) {
+//                        lastChecked = this;
+//                        return;
+//                  }
+//                  if (e.shiftKey) {
+//                        var startTemp = allCheckboxes.indexOf(this);
+//                        var endTemp = allCheckboxes.indexOf(lastChecked);
+//                        var start = Math.min(startTemp, endTemp);
+//                        var end = Math.max(startTemp, endTemp);
+//                        for (var i=start; i<=end; i++) {
+//                              allCheckboxes[i].checked = lastChecked.checked;
+//                        }
+//                  }
+//                  lastChecked = this;
+//            }; // end the custom "onclick" function for this check box
+//      } // run through all the check boxes on the page
+     
+// } // "doOnLoad()"
+
 </script>
 </body>
 </html>
